@@ -8,64 +8,80 @@ class dropp extends StatefulWidget {
 }
 
 class _droppState extends State<dropp> {
-  var selected = "choose";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          DropdownButtonFormField(
-            items: [
-              DropdownMenuItem(
-                child: Text("test1"),
-                value: "test11",
-              ),
-              DropdownMenuItem(
-                child: Text("test2"),
-                value: "test22",
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              DropdownButtonFormField(
+                hint: Text("Gender"),
+                items: [
+                  DropdownMenuItem(
+                    child: Text("Male"),
+                    value: "test11",
+                  ),
+                  DropdownMenuItem(
+                    child: Text("Female"),
+                    value: "test22",
+                  ),
+                  DropdownMenuItem(
+                    child: Text("Shemale"),
+                    value: "test32",
+                  ),
+                ],
+                onChanged: (val) {
+                  setState(() {
+                    print(val);
+                  });
+                },
               ),
             ],
-            onChanged: (val) {
-              setState(() {
-              });
-            },
-            hint: Text("Texttt"),
           ),
-        ],
+        ),
       ),
     );
   }
 }
+
 
 class bottomsheett extends StatelessWidget {
   const bottomsheett({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: RaisedButton(onPressed: () {
-        showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return Container(
-                height: 200,
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: Text("1"),
-                    ),
-                    ListTile(
-                      title: Text("1"),
-                    ),
-                    ListTile(
-                      title: Text("1"),
-                    ),
-                  ],
-                ),
-              );
-            },
-        );
-      }),
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: RaisedButton(
+            child: Text("Watch Below"),
+              onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Container(
+                  height: 200,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: Text("1"),
+                      ),
+                      ListTile(
+                        title: Text("1"),
+                      ),
+                      ListTile(
+                        title: Text("1"),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+          ),
+        ),
+      ),
     );
   }
 }
