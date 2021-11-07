@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sssssssssssssssssssss/HomePage.dart';
+import 'package:sssssssssssssssssssss/Sliderrr.dart';
 import 'package:sssssssssssssssssssss/bottomm.dart';
 import 'package:sssssssssssssssssssss/dropsliver.dart';
 import 'package:sssssssssssssssssssss/expanded.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: bottomsheett(),
+      home: sliderrr(),
     );
   }
 }
