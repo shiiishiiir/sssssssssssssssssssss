@@ -56,3 +56,41 @@ class _sliderrrState extends State<sliderrr> {
     );
   }
 }
+
+
+
+
+
+class sliddeerrrrrr extends StatefulWidget {
+  const sliddeerrrrrr({Key? key}) : super(key: key);
+
+  @override
+  _sliddeerrrrrrState createState() => _sliddeerrrrrrState();
+}
+
+class _sliddeerrrrrrState extends State<sliddeerrrrrr> {
+
+  var _value = 20.0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:<Widget>[
+            Text("Ki obostha", style: TextStyle(fontSize: _value),),
+            Slider(
+                min: 20,
+                max: 50,
+                value: _value, onChanged: (value){
+                  setState(() {
+                    _value= value;
+                  });
+            }),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
