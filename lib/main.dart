@@ -6,7 +6,7 @@ import 'package:sssssssssssssssssssss/dropsliver.dart';
 import 'package:sssssssssssssssssssss/expanded.dart';
 import 'package:sssssssssssssssssssss/splashscreen.dart';
 import 'package:sssssssssssssssssssss/tabtab.dart';
-
+import 'package:sssssssssssssssssssss/littleAnimatedWidgets.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: sliddeerrrrrr(),
+      home: customAlertDialogue(),
     );
   }
 }
