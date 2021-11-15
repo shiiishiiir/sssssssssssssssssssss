@@ -147,6 +147,7 @@ Widget addDetails(
     leading: CircleAvatar(
       child: Text(name[0]),
     ),
+    trailing: IconButton(onPressed: (){},icon: Icon(Icons.message),),
   );
 }
 
