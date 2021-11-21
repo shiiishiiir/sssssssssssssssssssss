@@ -17,7 +17,6 @@ class animatContain extends StatefulWidget {
 }
 
 class _animatContainState extends State<animatContain> {
-
   // late File _image;
   // Future CameraImage() async{
   //   var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -26,9 +25,7 @@ class _animatContainState extends State<animatContain> {
   //   });
   // }
 
-
   bool _value = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +52,32 @@ class _animatContainState extends State<animatContain> {
                   ),
                 ),
                 Divider(),
-                Transform.rotate(angle: pi/4.2 ,child: Container(width: 150,height: 150,color: Colors.redAccent,),),
+                Transform.rotate(
+                  angle: pi / 4.2,
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    color: Colors.redAccent,
+                  ),
+                ),
                 Divider(),
-                Transform.scale(scale:1.55 ,child: Container(width: 150,height: 150,color: Colors.cyanAccent,),),
+                Transform.scale(
+                  scale: 1.55,
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    color: Colors.cyanAccent,
+                  ),
+                ),
                 Divider(),
-                Transform.translate(offset: Offset(50, 50) ,child: Container(width: 150,height: 150,color: Colors.redAccent,),),
+                Transform.translate(
+                  offset: Offset(50, 50),
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    color: Colors.redAccent,
+                  ),
+                ),
               ],
             ),
           ),
@@ -68,10 +86,6 @@ class _animatContainState extends State<animatContain> {
     );
   }
 }
-
-
-
-
 
 class blurrrr extends StatefulWidget {
   const blurrrr({Key? key}) : super(key: key);
@@ -94,7 +108,9 @@ class _blurrrrState extends State<blurrrr> {
             ),
             BackdropFilter(
               filter: ImageFilter.blur(
-                  sigmaX: 1, sigmaY: 1, tileMode: TileMode.clamp),
+                  sigmaX: 5, sigmaY: 5,
+                  tileMode: TileMode.clamp
+              ),
               child: Container(
                 color: Colors.red.withOpacity(0.1),
               ),
@@ -106,9 +122,6 @@ class _blurrrrState extends State<blurrrr> {
   }
 }
 
-
-
-
 class animaBottom extends StatefulWidget {
   const animaBottom({Key? key}) : super(key: key);
 
@@ -118,14 +131,12 @@ class animaBottom extends StatefulWidget {
 
 class _animaBottomState extends State<animaBottom> {
   var _currentIndex = 0;
-  final pages= [
-
+  final pages = [
     animatContain(),
     HomePage(),
     textfield(),
-    tabtab(),
+    blurrrr(),
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +150,7 @@ class _animaBottomState extends State<animaBottom> {
             animationCurve: Curves.bounceOut,
             animationDuration: Duration(milliseconds: 700),
             height: 60,
-            onTap: (index){
+            onTap: (index) {
               setState(() {
                 _currentIndex = index;
               });
@@ -155,4 +166,3 @@ class _animaBottomState extends State<animaBottom> {
     );
   }
 }
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sssssssssssssssssssss/21_11_2021.dart';
 import 'package:sssssssssssssssssssss/HomePage.dart';
 import 'package:sssssssssssssssssssss/Sliderrr.dart';
 import 'package:sssssssssssssssssssss/animatedContainer.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: animaBottom(),
+      home: railrail(),
     );
   }
 }
