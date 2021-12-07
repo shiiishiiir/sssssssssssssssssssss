@@ -5,6 +5,7 @@ import 'package:sssssssssssssssssssss/25_11_21/Expandableess.dart';
 import 'package:sssssssssssssssssssss/25_11_21/RegForm.dart';
 import 'package:sssssssssssssssssssss/25_11_21/dd.dart';
 import 'package:sssssssssssssssssssss/HomePage.dart';
+import 'package:sssssssssssssssssssss/JsonDataFetch.dart';
 import 'package:sssssssssssssssssssss/Sliderrr.dart';
 import 'package:sssssssssssssssssssss/animatedContainer.dart';
 import 'package:sssssssssssssssssssss/bottomm.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ContactListArray(),
+      home: Jsondata(),
     );
   }
 }
