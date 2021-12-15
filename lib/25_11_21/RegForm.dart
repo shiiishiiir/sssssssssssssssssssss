@@ -9,7 +9,13 @@ class RegForm extends StatefulWidget {
 }
 
 class _RegFormState extends State<RegForm> {
+
+
+
   int _value = 1;
+
+
+
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
@@ -65,9 +71,9 @@ class _RegFormState extends State<RegForm> {
                           decoration: InputDecoration(
                             labelText: "Enter Your Name",
                           ),
-                          validator: (val){
-                            if (val!.isEmpty){
-                              return ("Enter Your Name Firstx");
+                          validator: (dew){
+                            if(dew!.isEmpty){
+                              return ("Age Naam De Beda..");
                             }
                           },
                             onSaved: (value){

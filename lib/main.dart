@@ -4,6 +4,7 @@ import 'package:sssssssssssssssssssss/25_11_21/ContactListArray.dart';
 import 'package:sssssssssssssssssssss/25_11_21/Expandableess.dart';
 import 'package:sssssssssssssssssssss/25_11_21/RegForm.dart';
 import 'package:sssssssssssssssssssss/25_11_21/dd.dart';
+import 'package:sssssssssssssssssssss/API/WeatherApp.dart';
 import 'package:sssssssssssssssssssss/HomePage.dart';
 import 'package:sssssssssssssssssssss/JsonDataFetch.dart';
 import 'package:sssssssssssssssssssss/Sliderrr.dart';
@@ -29,7 +30,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Jsondata(),
+      home: SafeArea(
+          child: WeatherAppApi(),
+      ),
     );
   }
 }
