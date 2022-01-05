@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -9,12 +11,7 @@ class RegForm extends StatefulWidget {
 }
 
 class _RegFormState extends State<RegForm> {
-
-
-
   int _value = 1;
-
-
 
   var nameController = TextEditingController();
   var emailController = TextEditingController();
@@ -22,12 +19,40 @@ class _RegFormState extends State<RegForm> {
   var addressController = TextEditingController();
   var passwordController = TextEditingController();
 
+  final firebaseRef= FirebaseDatabase.instance.ref("Users%20Data");
+
   var name, email, phone, address, password;
 
-  var formKey= GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
 
-  _handleSignUpData(){
+  _sendFirebase(){
     if(formKey.currentState!.validate()){
+      firebaseRef.push().set({
+        "Name": nameController.text,
+        "email": emailController.text,
+        "phone": phoneController.text,
+        "address": addressController.text,
+        "password": passwordController.text
+      }).then((value){
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Successfully Sent")));
+
+        nameController.clear();
+        emailController.clear();
+        phoneController.clear();
+        addressController.clear();
+        passwordController.clear();
+      }).catchError((onError){
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Sending Failed")));
+      });
+    }
+  }
+
+
+
+
+
+  _handleSignUpData() {
+    if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
 
       print("Name is : ${this.name}");
@@ -37,6 +62,8 @@ class _RegFormState extends State<RegForm> {
       print("Password is : ${this.password}");
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,80 +93,76 @@ class _RegFormState extends State<RegForm> {
                     child: Column(
                       children: <Widget>[
                         TextFormField(
-                          keyboardType: TextInputType.name,
-                          controller: nameController,
-                          decoration: InputDecoration(
-                            labelText: "Enter Your Name",
-                          ),
-                          validator: (dew){
-                            if(dew!.isEmpty){
-                              return ("Age Naam De Beda..");
-                            }
-                          },
-                            onSaved: (value){
-                              this.name=value;
-                            }
-                        ),
+                            keyboardType: TextInputType.name,
+                            controller: nameController,
+                            decoration: InputDecoration(
+                              labelText: "Enter Your Name",
+                            ),
+                            validator: (dew) {
+                              if (dew!.isEmpty) {
+                                return ("Age Naam De Beda..");
+                              }
+                            },
+                            onSaved: (value) {
+                              this.name = value;
+                            }),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
                           decoration: InputDecoration(
                             labelText: "Enter Your Email",
                           ),
-                          validator: (val){
-                            if (val!.isEmpty){
+                          validator: (val) {
+                            if (val!.isEmpty) {
                               return ("Enter Your Email Firstx");
                             }
                           },
-                          onSaved: (value){
-                            this.email=value;
+                          onSaved: (value) {
+                            this.email = value;
                           },
                         ),
                         TextFormField(
-                          keyboardType: TextInputType.phone,
-                          controller: phoneController,
-                          decoration: InputDecoration(
-                            labelText: "Enter Your Phone",
-                          ),
-                          validator: (val){
-                            if (val!.isEmpty){
-                              return ("Enter Your Phone Firstx");
-                            }
-                          },
-                            onSaved: (value){
-                              this.phone=value;
-                            }
-                        ),
+                            keyboardType: TextInputType.phone,
+                            controller: phoneController,
+                            decoration: InputDecoration(
+                              labelText: "Enter Your Phone",
+                            ),
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return ("Enter Your Phone Firstx");
+                              }
+                            },
+                            onSaved: (value) {
+                              this.phone = value;
+                            }),
                         TextFormField(
-                          keyboardType: TextInputType.name,
-                          controller: addressController,
-                          decoration: InputDecoration(
-                            labelText: "Enter Your Address",
-                          ),
-                          validator: (val){
-                            if (val!.isEmpty){
-                              return ("Enter Your Adsress Firstx");
-                            }
-                          },
-                            onSaved: (value){
-                              this.address=value;
-                            }
-                        ),
+                            keyboardType: TextInputType.name,
+                            controller: addressController,
+                            decoration: InputDecoration(
+                              labelText: "Enter Your Address",
+                            ),
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return ("Enter Your Adsress Firstx");
+                              }
+                            },
+                            onSaved: (value) {
+                              this.address = value;
+                            }),
                         TextFormField(
-                          obscureText: true,
-                          controller: passwordController,
-                          decoration: InputDecoration(
-                            labelText: "Enter Your Password",
-                          ),
-                          validator: (val){
-                            if (val!.isEmpty){
-                              return ("Enter Your Password Firstx");
-                            }
-                          },
-                            onSaved: (value){
-                              this.password=value;
-                            }
-                        ),
+                            obscureText: true,
+                            controller: passwordController,
+                            decoration: InputDecoration(
+                              labelText: "Enter Your Password",
+                            ),
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return ("Enter Your Password Firstx");
+                              }
+                            },
+                            onSaved: (value) {
+                              this.password = value;
+                            }),
                         SizedBox(
                           height: 20,
                         ),
@@ -188,20 +211,33 @@ class _RegFormState extends State<RegForm> {
                         ),
                         DropdownButtonFormField(
                           hint: Text("Your Marital Status"),
-                          onChanged: (value){
+                          onChanged: (value) {
                             setState(() {
                               print(value);
                             });
                           },
-                          items:[
-                            DropdownMenuItem(child: Text("Married"),value: "married",),
-                            DropdownMenuItem(child: Text("Unmarried"),value: "unmarried",),
-                          ],),
+                          items: [
+                            DropdownMenuItem(
+                              child: Text("Married"),
+                              value: "married",
+                            ),
+                            DropdownMenuItem(
+                              child: Text("Unmarried"),
+                              value: "unmarried",
+                            ),
+                          ],
+                        ),
                         SizedBox(
                           height: 20,
                         ),
-                        RaisedButton(onPressed: _handleSignUpData,child: Text("Submit"),elevation: 10,),
-                        SizedBox(height: 20,),
+                        RaisedButton(
+                          onPressed: _sendFirebase,
+                          child: Text("Submit"),
+                          elevation: 10,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
                       ],
                     ),
                   ),
