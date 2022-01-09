@@ -8,6 +8,8 @@ import 'package:sssssssssssssssssssss/25_11_21/GeoLocator.dart';
 import 'package:sssssssssssssssssssss/25_11_21/RegForm.dart';
 import 'package:sssssssssssssssssssss/25_11_21/dd.dart';
 import 'package:sssssssssssssssssssss/API/WeatherApp.dart';
+import 'package:sssssssssssssssssssss/Firebase/EmailAuth.dart';
+import 'package:sssssssssssssssssssss/Firebase/GoogleSignIn.dart';
 import 'package:sssssssssssssssssssss/HomePage.dart';
 import 'package:sssssssssssssssssssss/JsonDataFetch.dart';
 import 'package:sssssssssssssssssssss/Sliderrr.dart';
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SafeArea(
-          child: LocationWidget(),
+          child: EmailAuth(),
       ),
     );
   }
