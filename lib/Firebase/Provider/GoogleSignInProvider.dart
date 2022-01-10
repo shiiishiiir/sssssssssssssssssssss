@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-
 signUp(String email, String password) async {
   try {
     UserCredential userCredential = await FirebaseAuth.instance
@@ -39,11 +38,40 @@ signIn(String email, String password) async {
 class GoogleSignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
 
-  bool _isSignIn = false;
+  bool _isSigningIn = false;
 
   GoogleSignInProvider() {
-    _isSignIn = false;
+    _isSigningIn = false;
   }
 
-  bool get isSignIn => _isSignIn;
+  bool get isSigningIn => _isSigningIn;
+
+  set isSigninIn(bool isSigninIn) {
+    _isSigningIn = isSigninIn;
+    notifyListeners();
+  }
+
+  Future login() async {
+    isSigninIn = true;
+
+    final user = await googleSignIn.signIn();
+
+    if (user == null) {
+      isSigninIn = false;
+      return;
+    } else {
+      final googleAuth = await user.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    }
+  }
+
+  void logout() async {
+    await googleSignIn.disconnect();
+    FirebaseAuth.instance.signOut();
+  }
 }

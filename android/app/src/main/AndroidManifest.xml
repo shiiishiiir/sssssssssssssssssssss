@@ -6,6 +6,7 @@
    <application
        android:usesCleartextTraffic="true"
 
+
        android:label="Vanish"
         android:icon="@mipmap/ic_launcher">
         <activity

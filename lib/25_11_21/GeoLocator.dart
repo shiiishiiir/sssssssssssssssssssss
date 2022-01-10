@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class LocationWidget extends StatefulWidget {
   const LocationWidget({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class LocationWidget extends StatefulWidget {
 
 class _LocationWidgetState extends State<LocationWidget> {
   Position? position;
+  String addresss = "My Address";
 
   fetchPosition() async {
     bool serviceEnabled;
@@ -32,10 +34,20 @@ class _LocationWidgetState extends State<LocationWidget> {
     if (permission == LocationPermission.deniedForever) {
       Fluttertoast.showToast(msg: "Location permissions are denied Forever");
     }
-    Position currentposition = await Geolocator.getCurrentPosition();
-    setState(() {
-      position = currentposition;
-    });
+    Position currentposition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          currentposition.latitude, currentposition.longitude);
+      Placemark place = placemarks[0];
+
+      setState(() {
+        position = currentposition;
+        addresss = "${place.locality}, ${place.country}";
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -46,6 +58,7 @@ class _LocationWidgetState extends State<LocationWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(addresss),
             Text(position == null ? 'Location' : position.toString()),
             ElevatedButton(
               onPressed: fetchPosition,
